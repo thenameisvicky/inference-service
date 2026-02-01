@@ -15,6 +15,8 @@ class Prompt(BaseModel):
 
 @app.post("/api/v1/infer")
 def infer(data: Prompt):
-    output = llm(data.prompt, max_tokens=100, temperature=0.7)
+    output = llm(data.prompt, max_tokens=300, temperature=0.7)
+    print(f"Output raw: {output}")
+    print(f"Output: {output['choices'][0]['text']}")
     return {"response": output['choices'][0]['text']}
     
